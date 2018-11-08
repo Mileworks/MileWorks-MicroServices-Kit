@@ -15,7 +15,7 @@
   1：安装kubectl  
   比较懒 采用 snap(类似apt的东西) 安装kubectl
   ```
-  sudo snap install kubectl
+  sudo snap install kubectl (妈的 这步安装之后始终会报下面的错，后可以从github下载对应版本的kubectl)
   ```
   2：安装golang  
   使用apt 安装golang  
