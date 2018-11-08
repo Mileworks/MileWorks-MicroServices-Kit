@@ -90,6 +90,11 @@ sudo mv ./kubectl /usr/local/bin/kubectl
 ```
 minikube dashboard
 ```
+如果报以下错误信息，解决办法
+```
+Waiting, endpoint for service is not ready yet...
+```
+
 执行完毕后会自动弹出浏览器 如果没有 请尝试 http://192.168.99.100:30000  
 
 
