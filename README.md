@@ -77,6 +77,12 @@ kubectl get all
 Error from server (NotAcceptable): unknown (get pods)
 ```  
 
+```
+$ curl -LO https://storage.googleapis.com/kubernetes-release/release/v1.10.0/bin/linux/amd64/kubectl
+$ chmod +x ./kubectl
+$ sudo mv ./kubectl /usr/local/bin/kubectl
+```
+
 6:打开k8s web ui  
 ```
 minikube dashboard
