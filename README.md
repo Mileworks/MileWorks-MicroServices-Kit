@@ -71,11 +71,20 @@ docker tag registry.cn-hangzhou.aliyuncs.com/google-containers/pause-amd64:3.0 g
 ```
 kubectl get all
 ```  
+注意：  
+如果出现如下信息的解决办法：  
+```
+Error from server (NotAcceptable): unknown (get pods)
+```  
+
 6:打开k8s web ui  
 ```
 minikube dashboard
 ```
-执行完毕后会自动弹出浏览器 如果没有 请尝试 http://192.168.99.100:30000
+执行完毕后会自动弹出浏览器 如果没有 请尝试 http://192.168.99.100:30000  
+
+
+
 
 
 
