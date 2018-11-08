@@ -76,11 +76,14 @@ kubectl get all
 ```
 Error from server (NotAcceptable): unknown (get pods)
 ```  
+先到https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG.md#client-binaries-1 从github上找到对应的client binaries。然后复制连接地址。然后执行以下命令
 
 ```
-$ curl -LO https://storage.googleapis.com/kubernetes-release/release/v1.10.0/bin/linux/amd64/kubectl
-$ chmod +x ./kubectl
-$ sudo mv ./kubectl /usr/local/bin/kubectl
+wget https://dl.k8s.io/v1.9.3/kubernetes-client-linux-amd64.tar.gz
+tar -zxvf kubernetes-client-linux-amd64.tar.gz
+cd kubernetes/client/bin
+chmod +x ./kubectl
+sudo mv ./kubectl /usr/local/bin/kubectl
 ```
 
 6:打开k8s web ui  
