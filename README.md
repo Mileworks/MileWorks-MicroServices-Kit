@@ -1,6 +1,6 @@
 # MileWorks-MicroServices-Kit
-## minikube本地安装实际过程（国内），可按步骤操作即可。  -- 这里基于ubuntu 18.04  
-这里教程只是用于实际本地开发 ， 如果要使用k8s用于生产环境，必须搭建高可用HA 的K8s，是到坎，后面章节会说明。这里只针对实际本地开发时候搭建k8s，官方推荐的是minikube。  
+## minikube本地安装实际过程（国内），可按步骤操作即可。  -- 这里基于ubuntu 18.04，https://yq.aliyun.com/articles/221687  
+这里教程只是用于实际本地开发 ， 如果要使用k8s用于生产环境，必须搭建高可用HA 的K8s，是到坎，后面章节会说明。这里只针对实际本地开发时候搭建k8s，官方推荐的是minikube。关注https://github.com/AliyunContainerService/minikube 每次可以从这里make 镜像 。  
 ### 运行环境  
   ubuntu 18.04 至少这个版本 低了不行 没有snap
   可以访问互联网    
