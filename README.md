@@ -3,7 +3,8 @@
 这里教程只是用于实际本地开发 ， 如果要使用k8s用于生产环境，必须搭建高可用HA 的K8s，是到坎，后面章节会说明。这里只针对实际本地开发时候搭建k8s，官方推荐的是minikube。  
 ### 运行环境  
   ubuntu 18.04 至少这个版本 低了不行 没有snap
-  可以访问互联网  
+  可以访问互联网    
+  docker 环境
 ### 安装步骤  
   更新系统apt包相关资源，需要手动调整到国内的镜像源 不然要慢死人了。  
   安装snap snapd 方便后续安装kubectl：  
@@ -28,8 +29,9 @@
   4:启动minikube  
   ```
   minikube start --registry-mirror=https://registry.docker-cn.com
+  minikube ssh   
   ```  
-  手动拉取镜像：minikube ssh   
+  手动拉取镜像： 配合本地docker环境
   阿里的镜像查询地址：https://dev.aliyun.com/search.html
   ```
   docker pull registry.cn-hangzhou.aliyuncs.com/google_containers/kube-addon-manager-amd64:v6.4-beta.2
