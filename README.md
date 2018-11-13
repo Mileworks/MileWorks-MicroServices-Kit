@@ -98,7 +98,7 @@ Waiting, endpoint for service is not ready yet...
 
 
 
-
+可以使用阿里的镜像库 https://cr.console.aliyun.com/cn-hangzhou/repositories
 
 
 
