@@ -94,9 +94,7 @@ minikube dashboard
 ```
 Waiting, endpoint for service is not ready yet...
 ```
-
-执行完毕后会自动弹出浏览器 如果没有 请尝试 http://192.168.99.100:30000  
-
+后面要在进入minikube ssh后，在minikube 里面构建registry 仓库，然后kubenetes 每次会从minikube 自己仓库里面拿镜像。  https://blog.hasura.io/sharing-a-local-registry-for-minikube-37c7240d0615
 
 
 
