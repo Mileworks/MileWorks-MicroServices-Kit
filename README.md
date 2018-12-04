@@ -1,111 +1,12 @@
-# MileWorks-MicroServices-Kit
-## minikube本地安装实际过程（国内），可按步骤操作即可。  -- 这里基于ubuntu 18.04，https://yq.aliyun.com/articles/221687  
-这里教程只是用于实际本地开发 ， 如果要使用k8s用于生产环境，必须搭建高可用HA 的K8s，是到坎，后面章节会说明。这里只针对实际本地开发时候搭建k8s，官方推荐的是minikube。关注https://github.com/AliyunContainerService/minikube 每次可以从这里make 镜像 。  
-### 运行环境  
-  ubuntu 18.04 至少这个版本 低了不行 没有snap
-  可以访问互联网    
-  docker 环境
-### 安装步骤  
-  更新系统apt包相关资源，需要手动调整到国内的镜像源 不然要慢死人了。  
-  安装snap snapd 方便后续安装kubectl：  
-  ```
-  sudo apt update && sudo apt upgrade   
-  sudo apt install snap  snapd  
-  ```  
-  1：安装kubectl  
-  比较懒 采用 snap(类似apt的东西) 安装kubectl
-  ```
-  sudo snap install kubectl (妈的 这步安装之后始终会报下面的错，后可以从github下载对应版本的kubectl)
-  ```
-  2：安装golang  
-  使用apt 安装golang  
-  ```  
-  sudo apt install golang
-  ```  
-  3: 安装minikube  
-  ```
-  curl -Lo minikube http://kubernetes.oss-cn-hangzhou.aliyuncs.com/minikube/releases/v0.25.0/minikube-linux-amd64 && chmod +x minikube && sudo mv minikube /usr/local/bin/
-  ```
-  4:启动minikube  
-  ```
-  minikube start --registry-mirror=https://registry.docker-cn.com
-  minikube ssh   
-  ```  
-  手动拉取镜像： 配合本地docker环境
-  阿里的镜像查询地址：https://dev.aliyun.com/search.html
-  ```
-  docker pull registry.cn-hangzhou.aliyuncs.com/google_containers/kube-addon-manager-amd64:v6.4-beta.2
-docker tag registry.cn-hangzhou.aliyuncs.com/google_containers/kube-addon-manager-amd64:v6.4-beta.2 gcr.io/google-containers/kube-addon-manager:v6.4-beta.2
+# 微服务自研路线
+针对主流微服务技术相关技术kong 网关 、 Spring Cloud 、ServiceComb 、docker 、kubernets 等技术总结和整套学习路线推荐。同时推荐每个关键步骤可以选择的技术点，方便用于后期项目、产品研发使用。理解这里面介绍的项目思想是最首要的。
 
-docker pull registry.cn-hangzhou.aliyuncs.com/google-containers/kubernetes-dashboard-amd64:v1.7.0
-docker tag registry.cn-hangzhou.aliyuncs.com/google-containers/kubernetes-dashboard-amd64:v1.7.0 gcr.io/google-containers/kubernetes-dashboard-amd64:v1.7.0
+首先要说明的是微服务是一种架构思想，跟语言无关。所以不要说微服务=spring cloud， spring cloud只是基于微服务思想，然后用java进行复写出来。其实spring cloud 有局限性，因为他只能用java语言进行开发。实际上微服务思想中更多是希望兼容来自不同语言的异构系统。
 
+文档记录这几个月研究微服务大致浏览过程总结，设计到的内容也比较多。献给需要这方面学习的朋友们。
 
-docker pull registry.cn-hangzhou.aliyuncs.com/google_containers/k8s-dns-kube-dns-amd64:1.14.5
-docker tag registry.cn-hangzhou.aliyuncs.com/google_containers/k8s-dns-kube-dns-amd64:1.14.5 gcr.io/google-containers/k8s-dns-kube-dns-amd64:1.14.5
-
-docker pull registry.cn-hangzhou.aliyuncs.com/google-containers/k8s-dns-dnsmasq-nanny-amd64:1.14.5
-docker tag registry.cn-hangzhou.aliyuncs.com/google-containers/k8s-dns-dnsmasq-nanny-amd64:1.14.5 gcr.io/google-containers/k8s-dns-dnsmasq-nanny-amd64:1.14.5
-
-docker pull registry.cn-hangzhou.aliyuncs.com/google-containers/k8s-dns-sidecar-amd64:1.14.5
-docker tag registry.cn-hangzhou.aliyuncs.com/google-containers/k8s-dns-sidecar-amd64:1.14.5 gcr.io/google-containers/k8s-dns-sidecar-amd64:1.14.5
-
-docker pull registry.cn-hangzhou.aliyuncs.com/google_containers/kubedns-amd64:1.9
-docker tag registry.cn-hangzhou.aliyuncs.com/google-containers/kubedns-amd64:1.9 gcr.io/google-containers/kubedns-amd64:1.9
-
-docker pull registry.cn-hangzhou.aliyuncs.com/google-containers/kube-dnsmasq-amd64:1.4
-docker tag registry.cn-hangzhou.aliyuncs.com/google-containers/kube-dnsmasq-amd64:1.4 gcr.io/google-containers/kube-dnsmasq-amd64:1.4
-
-docker pull registry.cn-hangzhou.aliyuncs.com/google-containers/exechealthz-amd64:1.2
-docker tag registry.cn-hangzhou.aliyuncs.com/google-containers/exechealthz-amd64:1.2 gcr.io/google-containers/exechealthz-amd64:1.2
-
-docker pull registry.cn-hangzhou.aliyuncs.com/google-containers/echoserver:1.4
-docker tag  registry.cn-hangzhou.aliyuncs.com/google-containers/echoserver:1.4 gcr.io/google-containers/echoserver:1.4
-
-docker pull registry.cn-hangzhou.aliyuncs.com/google-containers/pause-amd64:3.0
-docker tag registry.cn-hangzhou.aliyuncs.com/google-containers/pause-amd64:3.0 gcr.io/google-containers/pause-amd64:3.0
-```
-
-  
-  5:尝试kubectl是否可用
-```
-kubectl get all
-```  
-注意：  
-如果出现如下信息的解决办法：  
-```
-Error from server (NotAcceptable): unknown (get pods)
-```  
-先到https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG.md#client-binaries-1 从github上找到对应的client binaries。然后复制连接地址。然后执行以下命令
-
-```
-wget https://dl.k8s.io/v1.9.3/kubernetes-client-linux-amd64.tar.gz
-tar -zxvf kubernetes-client-linux-amd64.tar.gz
-cd kubernetes/client/bin
-chmod +x ./kubectl
-sudo mv ./kubectl /usr/local/bin/kubectl
-```
-
-6:打开k8s web ui  
-```
-minikube dashboard
-```
-如果报以下错误信息，解决办法
-```
-Waiting, endpoint for service is not ready yet...
-```
-后面要在进入minikube ssh后，在minikube 里面构建registry 仓库，然后kubenetes 每次会从minikube 自己仓库里面拿镜像。  https://blog.hasura.io/sharing-a-local-registry-for-minikube-37c7240d0615
-
-
-
-可以使用阿里的镜像库 https://cr.console.aliyun.com/cn-hangzhou/repositories
-
-
-
-
-
-
-
+## 快速阅读传送门
+Gitbook完整顺序地阅读：![进入Gitbook](https://legacy.gitbook.com/book/long0419/mileworks-microservice-kit)
 
   
 
