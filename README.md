@@ -6,7 +6,7 @@
 文档记录这几个月研究微服务大致浏览过程总结，设计到的内容也比较多。献给需要这方面学习的朋友们。
 
 ## 快速阅读传送门
-Gitbook完整顺序地阅读：![进入Gitbook](https://legacy.gitbook.com/book/long0419/mileworks-microservice-kit)
+Gitbook完整顺序地阅读：[进入Gitbook](https://legacy.gitbook.com/book/long0419/mileworks-microservice-kit)
 
   
 
